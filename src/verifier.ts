@@ -112,6 +112,7 @@ export function verifyDomain(domain: string) {
 			throw new EmailSyntaxError("DNS label cannot start or end with a hyphen(-).");
 		}
 
+		//Verify characters of the part.
 		for (let i = 0; i < part.length; i++) {
 			const cc = part.charCodeAt(i);
 			if (cc >= 0x41 /*A*/ && cc <= 0x5A /*Z*/ ||
