@@ -1,7 +1,7 @@
 {
   "name": "email-syntax-verify",
-  "version": "1.0.0",
-  "description": "Verifies syntax of email addresses.",
+  "version": "1.0.1",
+  "description": "Syntactic verifier for email addresses.",
   "main": "index.js",
   "scripts": {
     "test": "npx mocha",
