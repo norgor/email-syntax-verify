@@ -9,6 +9,10 @@ export class EmailSyntaxError extends Error {
  * @param local The local part to verify.
  */
 export function verifyLocalPart(local: string) {
+	if (local == null) {
+		throw new EmailSyntaxError("Local part cannot be null/undefined.");
+	}
+
 	const localQuoted = local.startsWith('"') && local.endsWith('"');
 	//Remove quotes if quoted
 	if (localQuoted) {
@@ -102,6 +106,10 @@ export function verifyLocalPart(local: string) {
  * @param local The domain to verify.
  */
 export function verifyDomain(domain: string) {
+	if (domain == null) {
+		throw new EmailSyntaxError("Domain cannot be null/undefined.");
+	}
+
 	let domainParts = domain.split(".");
 	for (let part of domainParts) {
 		if (part.length === 0) {
@@ -133,6 +141,10 @@ export function verifyDomain(domain: string) {
  * @param email The email to verify.
  */
 export function verifyEmail(email: string) : void {
+	if (email == null) {
+		throw new EmailSyntaxError("Email cannot be null/undefined.");
+	}
+
 	const atIndex = email.lastIndexOf('@');
 	if (atIndex === -1) {
 		throw new EmailSyntaxError("Email did not have an at(@).");
