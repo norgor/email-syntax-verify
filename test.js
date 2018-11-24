@@ -1,11 +1,11 @@
 const chai = require("chai");
 const assert = chai.assert;
 const rewire = require("rewire");
-const accountManager = rewire("./lib/verifier");
+const verifier = rewire("./lib/verifier");
 
-describe("Account Manager Tests", function() {
+describe("Email syntax verification tests", function() {
 	describe("#verifyEmail", function() {
-		let verifyEmail = accountManager.__get__("verifyEmail");
+		let verifyEmail = verifier.__get__("verifyEmail");
 		const validEmails = [
 			"simple@example.com",
 			"very.common@example.com",
@@ -39,6 +39,9 @@ describe("Account Manager Tests", function() {
 			".test@gmail.com",
 			"test.@gmail.com",
 			"em(commentinvalid)ail@email.com",
+			"",
+			null,
+			undefined,
 		];
 
 		for (let valid of validEmails) {
@@ -49,7 +52,7 @@ describe("Account Manager Tests", function() {
 
 		for (let invalid of invalidEmails) {
 			it(`Fails on '${invalid}'`, () => {
-				assert.throws(() => verifyEmail(invalid));
+				assert.throws(() => verifyEmail(invalid), verifier.__get__("EmailSyntaxError"));
 			});
 		}
 	});
