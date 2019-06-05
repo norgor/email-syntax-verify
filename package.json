@@ -1,6 +1,6 @@
 {
   "name": "email-syntax-verify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Syntactic verifier for email addresses.",
   "main": "index.js",
   "scripts": {
